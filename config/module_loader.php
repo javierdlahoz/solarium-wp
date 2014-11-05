@@ -1,10 +1,14 @@
 <?php
 
 
-$dir_path = __DIR__."/../Solarium/";
+$dirPath = __DIR__."/../Solarium/";
+$dirResource = __DIR__."/../Resource/";
 
 /**it loads all files in folders **/
-require($dir_path."vendor/solarium/solarium/examples/init.php");
-require $dir_path."Entity/EntityInterface.php";
-require $dir_path."Entity/AbstractEntity.php";
-require $dir_path."Service/AbstractService.php";
+require($dirPath."vendor/solarium/solarium/examples/init.php");
+require $dirPath."Entity/EntityInterface.php";
+require $dirPath."Entity/AbstractEntity.php";
+require $dirPath."Service/AbstractService.php";
+
+require $dirResource."Service/ResourceService.php";
+require $dirResource."Entity/ResourceEntity.php";

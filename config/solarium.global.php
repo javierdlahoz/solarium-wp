@@ -9,3 +9,5 @@ $config = array(
         )
     )
 );
+
+$GLOBALS["solariumConfig"] = $config;

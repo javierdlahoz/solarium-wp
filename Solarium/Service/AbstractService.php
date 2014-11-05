@@ -17,7 +17,8 @@ class AbstractService {
 	private $update;
 	public static $service;
 
-	function __construct(array $config){
+	function __construct(){
+		$config = $GLOBALS["solariumConfig"];
 		$this->client = new Client($config);
 		$this->update = $this->client->createUpdate();
 		$this->init();
@@ -70,10 +71,10 @@ class AbstractService {
 	 * @param array $config
 	 * @return \Service\AbstractService
 	 */
-	public static function getSingleton(array $config)
+	public static function getSingleton()
 	{
 		if(!self::$service instanceof self){
-			self::$service = new self($config);
+			self::$service = new self();
 		}
 		return self::$service;
 	}
