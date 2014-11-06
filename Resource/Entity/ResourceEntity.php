@@ -73,14 +73,14 @@ class ResourceEntity extends AbstractEntity
 	 * @param string $description
 	 */
 	public function setDescription($description){
-		$this->setDescriptionTxt($description);
+		$this->setDescriptionS($description);
 	}
 	
 	/**
 	 * @return string
 	 */
 	public function getDescription(){
-		return $this->getDescriptionTxt();
+		return $this->getDescriptionS();
 	}
 	
 	/**
@@ -118,6 +118,11 @@ class ResourceEntity extends AbstractEntity
 	 * @return the LocationEntity
 	 */
 	public function getLocation() {
+		if(empty($this->location)){
+			$this->location = new LocationEntity();
+			$this->location->setFromString($this->getLocationS());
+		}
+		
 		return $this->location;
 	}
 	
@@ -135,6 +140,10 @@ class ResourceEntity extends AbstractEntity
 	 * @return the DateEntity
 	 */
 	public function getDate() {
+		if(empty($this->date)){
+			$this->date = new DateEntity();
+			$this->date->setFromString($this->getDateS());
+		}
 		return $this->date;
 	}
 	
@@ -152,6 +161,10 @@ class ResourceEntity extends AbstractEntity
 	 * @return the MultiselectEntity
 	 */
 	public function getType() {
+		if(empty($this->type)){
+			$this->type = new MultiselectEntity();
+			$this->type->setOptions($this->getTypeSs());
+		}
 		return $this->type;
 	}
 	
@@ -169,6 +182,10 @@ class ResourceEntity extends AbstractEntity
 	 * @return the MultiselectEntity
 	 */
 	public function getAudience() {
+		if(empty($this->audience)){
+			$this->audience = new MultiselectEntity();
+			$this->audience->setOptions($this->getAudienceSs());
+		}
 		return $this->audience;
 	}
 	
@@ -186,6 +203,10 @@ class ResourceEntity extends AbstractEntity
 	 * @return the MultiselectEntity
 	 */
 	public function getFormat() {
+		if(empty($this->format)){
+			$this->format = new MultiselectEntity();
+			$this->format->setOptions($this->getFormatSs());
+		}
 		return $this->format;
 	}
 	
@@ -202,8 +223,12 @@ class ResourceEntity extends AbstractEntity
 	 *
 	 * @return the MultiselectEntity
 	 */
-	public function getLicence() {
-		return $this->licence;
+	public function getLicense() {
+		if(empty($this->license)){
+			$this->license = new MultiselectEntity();
+			$this->license->setOptions($this->getLicenseSs());
+		}
+		return $this->license;
 	}
 	
 	/**
@@ -212,7 +237,7 @@ class ResourceEntity extends AbstractEntity
 	 */
 	public function setLicense(MultiselectEntity $license) {
 		$this->license = $license;
-		$this->setLicenseSs($license);
+		$this->setLicenseSs($license->getOptions());
 	}
 	
 	/**

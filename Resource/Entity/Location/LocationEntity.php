@@ -89,13 +89,8 @@ class LocationEntity {
 	private function validateString($location){
 		$locationCor = explode(", ", $location);
 		
-		if(count($locationCor) == 2){
-			if(is_numeric($locationCor[0]) && is_numeric($locationCor[1])){
-				return true;
-			}
-			else{
-				return false;
-			}
+		if(count($locationCor) == 2){		
+			return true;
 		}
 		else{
 			return false;

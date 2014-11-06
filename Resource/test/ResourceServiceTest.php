@@ -65,21 +65,22 @@ class ResourceServiceTest extends PHPUnit_Framework_TestCase
         $date = new DateEntity(self::DATE);
         $this->resourceEntity->setDate($date);
         
-//         $license = new MultiselectEntity();
-//         $license->addOption(self::LICENSE);
-//         $this->resourceEntity->setLicense($license);
+        $license = new MultiselectEntity();
+        $license->addOption(self::LICENSE);
+        $this->resourceEntity->setLicense($license);
         
-//         $type = new MultiselectEntity();
-//         $type->addOption(self::TYPE);
-//         $this->resourceEntity->setType($type);
+        $type = new MultiselectEntity();
+        $type->addOption(self::TYPE);
+        $this->resourceEntity->setType($type);
         
-//         $audience = new MultiselectEntity();
-//         $audience->addOption(self::AUDIENCE);
-//         $this->resourceEntity->setAudience($audience);
+        $audience = new MultiselectEntity();
+        $audience->addOption(self::AUDIENCE);
+        $this->resourceEntity->setAudience($audience);
 
-//         $format = new MultiselectEntity();
-//         $format->addOption(self::RESOURCE);
-//         $this->resourceEntity->setFormat($format);
+        $format = new MultiselectEntity();
+        $format->addOption(self::RESOURCE);
+        $this->resourceEntity->setFormat($format);
+       
     }
     
     public function testSaveResource()
@@ -91,22 +92,24 @@ class ResourceServiceTest extends PHPUnit_Framework_TestCase
         
         if($resultEntity instanceof Resource\Entity\ResourceEntity){
         	$this->assertEquals(self::TITLE, $resultEntity->getTitle());
+        	$this->assertEquals(self::DESCRIPTION, $resultEntity->getDescription());
+        	$this->assertEquals(self::AUTHOR, $resultEntity->getAuthors());
+        	$this->assertEquals(self::FESTIVAL_NAME, $resultEntity->getFestivalName());
+        	$this->assertEquals(self::URL, $resultEntity->getUrl());
+        	$this->assertEquals(self::LAT, $resultEntity->getLocation()->getLatitude());
+        	$this->assertEquals(self::LON, $resultEntity->getLocation()->getLongitude());
+        	$this->assertEquals(self::DATE, $resultEntity->getDate()->toString());
+        	$this->assertEquals(array(self::LICENSE), $resultEntity->getLicense()->getOptions());
+        	$this->assertEquals(array(self::TYPE), $resultEntity->getType()->getOptions());
+        	$this->assertEquals(array(self::AUDIENCE), $resultEntity->getAudience()->getOptions());
+        	$this->assertEquals(array(self::RESOURCE), $resultEntity->getFormat()->getOptions());
         }
-       	
-        
-//         $this->assertEquals(self::NAME, $resultEntity->getName());
-//         $this->assertEquals(self::NAME, $resultEntity->getName());
-//         $this->assertEquals(self::NAME, $resultEntity->getName());
-//         $this->assertEquals(self::NAME, $resultEntity->getName());
-//         $this->assertEquals(self::ID, $resultEntity->getId());
-//         $this->assertEquals(self::TYPE, $resultEntity->getTypeS());
-//         $this->assertEquals(self::URL, $resultEntity->getUrlS());
     }
     
-    public function utestDeleteEntity()
+    public function testDeleteResource()
     {   
-        $this->testService->delete($this->abstractEntity);
-        $resultEntity = $this->testService->findOneBy("id:".self::ID);
+        $this->resourceService->delete($this->resourceEntity);
+        $resultEntity = $this->resourceService->findResourceBy("id:".self::ID);
         
         $this->assertNull($resultEntity);
     }

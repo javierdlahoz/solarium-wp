@@ -29,6 +29,10 @@ class ResourceService extends AbstractService{
 	 */
 	public function findResourceBy($expression){
 		$resultEntity = self::findBy($expression);
+		if($resultEntity == null)
+		{
+			return null;
+		}
 		return self::toResourceEntity($resultEntity);
 	}
 }
