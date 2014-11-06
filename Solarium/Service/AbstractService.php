@@ -6,7 +6,7 @@ use Solarium\Entity\AbstractEntity;
 use Solarium\Client;
 use Solarium\Entity\EntityInterface;
 
-class AbstractService {
+abstract class AbstractService {
 
 	const RESPONSE_OK = "HTTP/1.1 200 OK";
 	const ASC = "asc";
@@ -73,8 +73,9 @@ class AbstractService {
 	 */
 	public static function getSingleton()
 	{
-		if(!self::$service instanceof self){
-			self::$service = new self();
+		$class = get_called_class();
+		if(!self::$service instanceof $class){
+			self::$service = new $class();
 		}
 		return self::$service;
 	}

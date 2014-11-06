@@ -49,7 +49,7 @@ class ResourceServiceTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         
-        $this->resourceService = new ResourceService();
+        $this->resourceService = ResourceService::getSingleton();
         $this->resourceEntity = new ResourceEntity();
         
         $this->resourceEntity->setId(self::ID);
